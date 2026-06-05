@@ -1,0 +1,102 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sistema generico para registrar equipos, solicitudes y tareas de mantenimiento.">
+    <title>Gestion de Mantenimiento</title>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+    <header class="topbar" aria-label="Navegacion principal">
+        <a class="brand" href="{% url 'home' %}" aria-label="Inicio">
+            <span class="brand-mark">GM</span>
+            <span>Gestion de Mantenimiento</span>
+        </a>
+        <nav class="nav-links" aria-label="Secciones">
+            <a href="#servicios">Servicios</a>
+            <a href="#flujo">Flujo</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Mesa de ayuda y activos</p>
+                <h1>Registro claro para soporte tecnico y mantenimiento.</h1>
+                <p class="hero-text">
+                    Organiza solicitudes, equipos y responsables en una vista simple para equipos de trabajo,
+                    areas internas o pequenas organizaciones.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#contacto">Solicitar soporte</a>
+                    <a class="button secondary" href="#servicios">Ver servicios</a>
+                </div>
+            </div>
+
+            <aside class="status-panel" aria-label="Resumen del sistema">
+                <div class="panel-header">
+                    <span class="status-dot"></span>
+                    <span>Panel operativo</span>
+                </div>
+                <div class="ticket-card">
+                    <span class="ticket-tag">Prioridad media</span>
+                    <strong>Equipo en revision</strong>
+                    <p>Diagnostico tecnico, repuestos y cierre documentado.</p>
+                </div>
+                <div class="mini-grid">
+                    {% for stat in stats %}
+                    <div>
+                        <strong>{{ stat.value }}</strong>
+                        <span>{{ stat.label }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </aside>
+        </section>
+
+        <section class="section" id="servicios">
+            <div class="section-heading">
+                <p class="eyebrow">Servicios</p>
+                <h2>Todo lo esencial para ordenar el soporte.</h2>
+            </div>
+            <div class="service-grid">
+                {% for service in services %}
+                <article class="service-card">
+                    <span class="service-number">0{{ forloop.counter }}</span>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="workflow-band" id="flujo">
+            <div>
+                <p class="eyebrow">Flujo de trabajo</p>
+                <h2>De la solicitud al cierre, sin perder informacion.</h2>
+            </div>
+            <ol class="workflow-list">
+                {% for item in workflow %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </section>
+
+        <section class="contact-section" id="contacto">
+            <div>
+                <p class="eyebrow">Contacto</p>
+                <h2>Centraliza nuevas solicitudes.</h2>
+                <p>Usa datos genericos para adaptar este proyecto a cualquier equipo de soporte.</p>
+            </div>
+            <div class="contact-card">
+                <span>soporte@ejemplo.cl</span>
+                <strong>Lunes a viernes</strong>
+                <p>09:00 a 18:00 hrs</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
