@@ -25,6 +25,7 @@ body {
     color: var(--text);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 a {
@@ -96,6 +97,7 @@ a {
 .contact-section {
     max-width: 1180px;
     margin: 0 auto;
+    min-width: 0;
     width: 100%;
 }
 
@@ -116,10 +118,10 @@ p {
 }
 
 h1 {
-    max-width: 760px;
+    max-width: 700px;
     margin: 0;
-    font-size: clamp(2.5rem, 8vw, 5.9rem);
-    line-height: 0.98;
+    font-size: clamp(2.45rem, 6.5vw, 4.9rem);
+    line-height: 1.04;
     letter-spacing: 0;
 }
 
@@ -175,6 +177,7 @@ h3 {
 .status-panel {
     width: min(100%, 460px);
     justify-self: end;
+    overflow: hidden;
     border: 1px solid var(--line);
     border-radius: 8px;
     padding: 20px;
@@ -184,6 +187,7 @@ h3 {
 
 .panel-header {
     justify-content: space-between;
+    gap: 16px;
     color: var(--muted);
     font-size: 0.9rem;
 }
@@ -359,7 +363,8 @@ h3 {
 
     .nav-links {
         width: 100%;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: flex-start;
         gap: 10px;
     }
 
@@ -371,12 +376,35 @@ h3 {
 
     .hero {
         min-height: auto;
+        overflow: hidden;
+        padding-inline: 20px;
+    }
+
+    .hero-copy {
+        max-width: calc(100vw - 40px);
+    }
+
+    h1 {
+        max-width: calc(100vw - 40px);
+        font-size: clamp(2rem, 9vw, 2.4rem);
+    }
+
+    .hero-text,
+    .status-panel,
+    .ticket-card,
+    .mini-grid,
+    .contact-card {
+        max-width: calc(100vw - 40px);
     }
 
     .status-panel,
     .contact-card {
-        justify-self: stretch;
-        width: 100%;
+        justify-self: start;
+        width: calc(100vw - 72px);
+    }
+
+    .panel-header {
+        justify-content: flex-start;
     }
 
     .service-grid,
