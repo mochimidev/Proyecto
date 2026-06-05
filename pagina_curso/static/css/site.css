@@ -1,14 +1,16 @@
 :root {
-    --bg: #f6f8fb;
+    --bg: #edf5f7;
     --surface: #ffffff;
     --text: #18212f;
     --muted: #5d6878;
     --line: #dce3ec;
-    --primary: #1f7a8c;
-    --primary-dark: #145866;
+    --primary: #0f8aa0;
+    --primary-dark: #07586b;
     --accent: #f2b84b;
+    --coral: #e66f51;
+    --blue: #4169e1;
     --success: #2f9b67;
-    --shadow: 0 24px 60px rgba(24, 33, 47, 0.12);
+    --shadow: 0 24px 60px rgba(11, 48, 65, 0.16);
 }
 
 * {
@@ -21,7 +23,10 @@ html {
 
 body {
     margin: 0;
-    background: var(--bg);
+    background:
+        linear-gradient(135deg, rgba(15, 138, 160, 0.18), transparent 38%),
+        linear-gradient(215deg, rgba(230, 111, 81, 0.16), transparent 34%),
+        var(--bg);
     color: var(--text);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
@@ -42,8 +47,8 @@ a {
     justify-content: space-between;
     gap: 24px;
     padding: 18px clamp(18px, 4vw, 56px);
-    border-bottom: 1px solid rgba(220, 227, 236, 0.86);
-    background: rgba(246, 248, 251, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.84);
     backdrop-filter: blur(14px);
 }
 
@@ -66,7 +71,7 @@ a {
     height: 42px;
     place-items: center;
     border-radius: 8px;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--blue));
     color: #ffffff;
     font-size: 0.86rem;
     letter-spacing: 0;
@@ -103,7 +108,7 @@ a {
 
 .eyebrow {
     margin: 0 0 12px;
-    color: var(--primary-dark);
+    color: var(--coral);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0;
@@ -161,8 +166,9 @@ h3 {
 }
 
 .button.primary {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #ffffff;
+    box-shadow: 0 14px 30px rgba(15, 138, 160, 0.28);
 }
 
 .button.primary:hover {
@@ -172,16 +178,19 @@ h3 {
 .button.secondary {
     border: 1px solid var(--line);
     background: var(--surface);
+    color: var(--primary-dark);
 }
 
 .status-panel {
     width: min(100%, 460px);
     justify-self: end;
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     padding: 20px;
-    background: var(--surface);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78)),
+        linear-gradient(135deg, rgba(15, 138, 160, 0.16), rgba(242, 184, 75, 0.18));
     box-shadow: var(--shadow);
 }
 
@@ -204,7 +213,10 @@ h3 {
     margin: 20px 0;
     border-radius: 8px;
     padding: 22px;
-    background: #eef7f8;
+    background:
+        linear-gradient(135deg, rgba(15, 138, 160, 0.12), rgba(65, 105, 225, 0.1)),
+        #eef9fb;
+    border-left: 5px solid var(--primary);
 }
 
 .ticket-tag {
@@ -247,6 +259,7 @@ h3 {
 .mini-grid div {
     min-height: 102px;
     padding: 14px;
+    border-top: 4px solid var(--accent);
 }
 
 .mini-grid strong {
@@ -279,6 +292,19 @@ h3 {
 .service-card {
     min-height: 236px;
     padding: 24px;
+    box-shadow: 0 16px 36px rgba(24, 33, 47, 0.08);
+}
+
+.service-card:nth-child(1) {
+    border-top: 5px solid var(--primary);
+}
+
+.service-card:nth-child(2) {
+    border-top: 5px solid var(--coral);
+}
+
+.service-card:nth-child(3) {
+    border-top: 5px solid var(--blue);
 }
 
 .service-number {
@@ -296,7 +322,16 @@ h3 {
 
 .workflow-band {
     border-block: 1px solid var(--line);
-    background: #ffffff;
+    background:
+        linear-gradient(90deg, rgba(7, 88, 107, 0.94), rgba(15, 138, 160, 0.9)),
+        var(--primary-dark);
+    color: #ffffff;
+}
+
+.workflow-band .eyebrow,
+.workflow-band p,
+.workflow-band h2 {
+    color: #ffffff;
 }
 
 .workflow-list {
@@ -315,7 +350,8 @@ h3 {
     border: 1px solid var(--line);
     border-radius: 8px;
     padding: 16px 16px 16px 58px;
-    background: #fbfcfe;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--text);
     font-weight: 700;
 }
 
@@ -329,7 +365,7 @@ h3 {
     height: 28px;
     place-items: center;
     border-radius: 8px;
-    background: var(--primary);
+    background: var(--coral);
     color: #ffffff;
     font-size: 0.82rem;
 }
@@ -342,6 +378,8 @@ h3 {
     padding: 26px;
     justify-self: end;
     width: min(100%, 420px);
+    border-left: 5px solid var(--coral);
+    box-shadow: 0 16px 36px rgba(24, 33, 47, 0.08);
 }
 
 .contact-card span {
