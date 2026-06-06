@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sistema generico para registrar equipos, solicitudes y tareas de mantenimiento.">
     <title>Gestion de Mantenimiento</title>
+    <link rel="icon" href="{% static 'img/logo-gm.svg' %}" type="image/svg+xml">
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
 </head>
 <body>
     <header class="topbar" aria-label="Navegacion principal">
         <a class="brand" href="{% url 'home' %}" aria-label="Inicio">
-            <span class="brand-mark">GM</span>
-            <span>Gestion de Mantenimiento</span>
+            <img class="brand-logo" src="{% static 'img/logo-gm.svg' %}" alt="" width="42" height="42">
+            <span class="brand-name">Gestion de Mantenimiento</span>
         </a>
         <nav class="nav-links" aria-label="Secciones">
+            <a href="#paneles">Paneles</a>
             <a href="#servicios">Servicios</a>
             <a href="#flujo">Flujo</a>
             <a href="#contacto">Contacto</a>
@@ -31,8 +33,8 @@
                     areas internas o pequenas organizaciones.
                 </p>
                 <div class="hero-actions">
-                    <a class="button primary" href="#contacto">Solicitar soporte</a>
-                    <a class="button secondary" href="#servicios">Ver servicios</a>
+                    <a class="button primary" href="#paneles">Abrir paneles</a>
+                    <a class="button secondary" href="#contacto">Solicitar soporte</a>
                 </div>
             </div>
 
@@ -47,14 +49,149 @@
                     <p>Diagnostico tecnico, repuestos y cierre documentado.</p>
                 </div>
                 <div class="mini-grid">
-                    {% for stat in stats %}
                     <div>
-                        <strong>{{ stat.value }}</strong>
-                        <span>{{ stat.label }}</span>
+                        <strong data-count="tickets">0</strong>
+                        <span>solicitudes locales</span>
                     </div>
-                    {% endfor %}
+                    <div>
+                        <strong data-count="assets">0</strong>
+                        <span>equipos registrados</span>
+                    </div>
+                    <div>
+                        <strong data-count="tasks">0</strong>
+                        <span>tareas pendientes</span>
+                    </div>
                 </div>
             </aside>
+        </section>
+
+        <section class="app-dashboard" id="paneles" aria-labelledby="panel-title">
+            <div class="dashboard-heading">
+                <div>
+                    <p class="eyebrow">Paneles conectados</p>
+                    <h2 id="panel-title">Gestion temporal de soporte.</h2>
+                    <p>Los datos quedan guardados en este navegador para pruebas rapidas. Puedes limpiar todo cuando quieras.</p>
+                </div>
+                <div class="storage-card">
+                    <span class="storage-label">Estado local</span>
+                    <strong id="storageStatus">Sin registros</strong>
+                    <button class="button danger" type="button" id="clearData">Limpiar datos</button>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <article class="data-panel">
+                    <div class="data-panel-header">
+                        <span class="panel-icon">S</span>
+                        <div>
+                            <h3>Solicitudes</h3>
+                            <p>Registra incidentes o requerimientos.</p>
+                        </div>
+                    </div>
+                    <form class="stacked-form" data-form="tickets">
+                        <label>
+                            Solicitante
+                            <input name="requester" type="text" placeholder="Nombre o area" required>
+                        </label>
+                        <label>
+                            Detalle
+                            <textarea name="detail" rows="3" placeholder="Describe el problema" required></textarea>
+                        </label>
+                        <div class="form-row">
+                            <label>
+                                Prioridad
+                                <select name="priority">
+                                    <option>Media</option>
+                                    <option>Alta</option>
+                                    <option>Baja</option>
+                                </select>
+                            </label>
+                            <label>
+                                Estado
+                                <select name="status">
+                                    <option>Abierta</option>
+                                    <option>En revision</option>
+                                    <option>Cerrada</option>
+                                </select>
+                            </label>
+                        </div>
+                        <button class="button primary" type="submit">Guardar solicitud</button>
+                    </form>
+                    <div class="record-list" data-list="tickets"></div>
+                </article>
+
+                <article class="data-panel">
+                    <div class="data-panel-header">
+                        <span class="panel-icon blue">E</span>
+                        <div>
+                            <h3>Equipos</h3>
+                            <p>Controla activos y responsables.</p>
+                        </div>
+                    </div>
+                    <form class="stacked-form" data-form="assets">
+                        <label>
+                            Equipo
+                            <input name="name" type="text" placeholder="Notebook, impresora, router" required>
+                        </label>
+                        <div class="form-row">
+                            <label>
+                                Codigo
+                                <input name="code" type="text" placeholder="ACT-001" required>
+                            </label>
+                            <label>
+                                Responsable
+                                <input name="owner" type="text" placeholder="Area o persona" required>
+                            </label>
+                        </div>
+                        <label>
+                            Condicion
+                            <select name="condition">
+                                <option>Operativo</option>
+                                <option>En revision</option>
+                                <option>Fuera de servicio</option>
+                            </select>
+                        </label>
+                        <button class="button primary" type="submit">Guardar equipo</button>
+                    </form>
+                    <div class="record-list" data-list="assets"></div>
+                </article>
+
+                <article class="data-panel">
+                    <div class="data-panel-header">
+                        <span class="panel-icon coral">T</span>
+                        <div>
+                            <h3>Tareas</h3>
+                            <p>Agenda acciones y cierres pendientes.</p>
+                        </div>
+                    </div>
+                    <form class="stacked-form" data-form="tasks">
+                        <label>
+                            Tarea
+                            <input name="title" type="text" placeholder="Revision, instalacion, retiro" required>
+                        </label>
+                        <div class="form-row">
+                            <label>
+                                Encargado
+                                <input name="assignee" type="text" placeholder="Tecnico responsable" required>
+                            </label>
+                            <label>
+                                Fecha
+                                <input name="due" type="date" required>
+                            </label>
+                        </div>
+                        <label>
+                            Avance
+                            <select name="progress">
+                                <option>Pendiente</option>
+                                <option>En proceso</option>
+                                <option>Completada</option>
+                            </select>
+                        </label>
+                        <button class="button primary" type="submit">Guardar tarea</button>
+                    </form>
+                    <div class="record-list" data-list="tasks"></div>
+                </article>
+            </div>
         </section>
 
         <section class="section" id="servicios">
@@ -98,5 +235,6 @@
             </div>
         </section>
     </main>
+    <script src="{% static 'js/dashboard.js' %}" defer></script>
 </body>
 </html>

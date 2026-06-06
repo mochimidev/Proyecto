@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Logo Gestion de Mantenimiento</title>
+  <desc id="desc">Isotipo con escudo, engranaje y letras GM para un sistema de soporte tecnico.</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="22" y1="18" x2="138" y2="142" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F8AA0"/>
+      <stop offset="1" stop-color="#4169E1"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="48" y1="44" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2B84B"/>
+      <stop offset="1" stop-color="#E66F51"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="34" fill="#F4F8FB"/>
+  <path d="M80 18 130 38v37c0 32-20 54-50 68-30-14-50-36-50-68V38l50-20Z" fill="url(#markGradient)"/>
+  <circle cx="80" cy="77" r="33" fill="#FFFFFF" opacity=".96"/>
+  <path d="M80 51c4 0 7 3 7 7v5l5 2 4-3c3-2 7-2 9 1s2 7-1 9l-4 3v5l4 3c3 2 4 6 1 9s-6 3-9 1l-4-3-5 2v5c0 4-3 7-7 7s-7-3-7-7v-5l-5-2-4 3c-3 2-7 2-9-1s-2-7 1-9l4-3v-5l-4-3c-3-2-4-6-1-9s6-3 9-1l4 3 5-2v-5c0-4 3-7 7-7Z" fill="url(#accentGradient)"/>
+  <circle cx="80" cy="77" r="10" fill="#FFFFFF"/>
+  <text x="80" y="123" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="0">GM</text>
+</svg>
