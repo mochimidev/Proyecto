@@ -32,7 +32,6 @@ docs/screenshots/
 
 ![Vista escritorio](docs/screenshots/home-desktop.png)
 
-![Vista movil](docs/screenshots/home-mobile.png)
 
 ## Responsive
 
