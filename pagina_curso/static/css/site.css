@@ -1223,6 +1223,12 @@ textarea:focus {
 
     .button {
         width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-actions,
+    .hero-actions .button {
+        min-width: 0;
     }
 
     .dashboard-grid {
@@ -1257,42 +1263,60 @@ textarea:focus {
 
 @media (max-width: 560px) {
     main {
-        width: calc(100vw - 32px);
-        max-width: calc(100vw - 32px);
+        width: calc(100% - 28px);
+        max-width: calc(100% - 28px);
     }
 
     .topbar {
         width: 100%;
         max-width: 100vw;
-    }
-
-    .topbar {
-        padding: 10px 8px;
+        gap: 8px;
+        padding: 8px 10px 10px;
     }
 
     .brand-name {
         font-size: 0.98rem;
-        white-space: normal;
+        white-space: nowrap;
     }
 
     .brand-logo {
-        width: 44px;
-        height: 44px;
+        width: 38px;
+        height: 38px;
     }
 
     .hero {
+        gap: 28px;
         overflow: visible;
+        padding-top: 28px;
     }
 
     .hero-copy {
         width: 100%;
-        max-width: 36ch;
+        max-width: none;
+        min-width: 0;
     }
 
     .nav-links {
-        grid-template-columns: 1fr;
-        gap: 6px;
-        font-size: 0.78rem;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 2px 2px 4px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        font-size: 0.73rem;
+        text-align: left;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        flex: 0 0 auto;
+        min-width: 104px;
+        padding: 9px 12px;
+        scroll-snap-align: start;
     }
 
     .nav-links a:last-child {
@@ -1309,8 +1333,8 @@ textarea:focus {
     }
 
     h1 {
-        max-width: 14ch;
-        font-size: clamp(1.9rem, 8.2vw, 2.22rem);
+        max-width: 17ch;
+        font-size: clamp(2rem, 8.8vw, 2.45rem);
         line-height: 1.08;
     }
 
@@ -1319,7 +1343,7 @@ textarea:focus {
     }
 
     .hero-text {
-        max-width: 36ch;
+        max-width: 34ch;
         font-size: 1rem;
     }
 
@@ -1338,7 +1362,7 @@ textarea:focus {
 
     .hero-visual,
     .hero-dashboard {
-        min-height: 320px;
+        min-height: 0;
     }
 
     .hero-panel-grid,
@@ -1363,7 +1387,7 @@ textarea:focus {
     }
 
     .mini-table div {
-        grid-template-columns: 64px minmax(0, 1fr);
+        grid-template-columns: 60px minmax(0, 1fr);
     }
 
     .status-chip {
@@ -1380,15 +1404,31 @@ textarea:focus {
     .contact-card {
         padding: 16px;
     }
+
+    .hero-dashboard {
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .hero-table-card,
+    .hero-chart-card,
+    .hero-inventory-card,
+    .hero-kpis div {
+        padding: 14px;
+    }
+
+    .metrics-grid {
+        gap: 12px;
+    }
 }
 
 @media (max-width: 390px) {
     main {
-        width: min(calc(100% - 20px), var(--container));
+        width: min(calc(100% - 24px), var(--container));
     }
 
     .topbar {
-        padding-inline: 12px;
+        padding-inline: 8px;
     }
 
     .brand {
@@ -1397,11 +1437,11 @@ textarea:focus {
     }
 
     .brand-name {
-        font-size: 0.88rem;
+        font-size: 0.92rem;
     }
 
     h1 {
-        font-size: 1.84rem;
+        font-size: 1.98rem;
     }
 
     .hero-dashboard,
