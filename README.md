@@ -1,53 +1,126 @@
-# Gestion de Mantenimiento
+# Gestion Mantix
 
-Aplicacion web desarrollada con Django para organizar solicitudes de soporte, equipos y tareas de mantenimiento. El proyecto funciona como una base visual y funcional para una mesa de ayuda interna, area tecnica, institucion o pequena organizacion.
+Sistema web de mantenimiento, soporte tecnico e inventario para organizaciones. El proyecto esta desarrollado con Django y funciona como una landing/prototipo profesional para mostrar una solucion tipo SaaS orientada a mesa de ayuda, control de activos, ordenes de trabajo y seguimiento operativo.
 
-La pagina principal incluye paneles conectados que permiten registrar informacion de manera temporal en el navegador mediante `localStorage`. Esto sirve para probar el flujo sin configurar todavia modelos de base de datos para solicitudes, equipos o tareas.
+La prioridad visual del proyecto es que se vea presentable en portafolio: oscuro, corporativo, tecnologico, responsive y con una interfaz que parezca un producto real, no una maqueta vacia.
 
 ## Vista General
+
+Gestion Mantix permite representar el flujo completo de una plataforma interna de mantenimiento:
+
+- Registro de solicitudes de soporte.
+- Control de equipos e inventario.
+- Asignacion de responsables.
+- Seguimiento de mantenciones.
+- Dashboard visual con tickets, SLA, stock y estados.
+- Guardado temporal local para pruebas rapidas.
+
+Actualmente la interfaz guarda datos demo en `localStorage`. La estructura esta preparada para evolucionar hacia modelos Django, autenticacion, roles, CRUD real y persistencia en SQLite o una base de datos productiva.
+
+## Capturas
+
+Las capturas actualizadas estan en:
+
+```text
+docs/screenshots/
+```
+
+| Vista | Archivo |
+| --- | --- |
+| Escritorio | `docs/screenshots/home-desktop.png` |
+| Movil responsive | `docs/screenshots/home-mobile.png` |
 
 ![Vista escritorio](docs/screenshots/home-desktop.png)
 
 ![Vista movil](docs/screenshots/home-mobile.png)
 
+## Responsive
+
+La pagina esta pensada como desktop first, pero fue ajustada para tablet y movil:
+
+- Desktop: hero en dos columnas, dashboard operacional y metricas horizontales.
+- Tablet: secciones en una o dos columnas segun el ancho disponible.
+- Movil: menu vertical, botones a ancho completo, cards apiladas y dashboard adaptado sin cortes laterales.
+- Tablas anchas: usan scroll horizontal controlado para evitar romper el layout.
+- Formularios: pasan a una columna en pantallas chicas.
+
+Se regeneraron capturas en escritorio y movil despues de los ajustes responsive.
+
+## Sistema Visual
+
+Paleta corporativa dark tech usada en la interfaz:
+
+| Uso | Color |
+| --- | --- |
+| Fondo principal | `#0F172A` |
+| Cards | `#1E293B` |
+| Hover | `#334155` |
+| Primario | `#2563EB` |
+| Secundario | `#3B82F6` |
+| Texto | `#F8FAFC` |
+| Texto secundario | `#94A3B8` |
+| Exito | `#10B981` |
+| Advertencia | `#F59E0B` |
+| Error | `#EF4444` |
+
 ## Funcionalidades
 
-- Pagina principal responsive y adaptable a escritorio, tablet y movil.
-- Logo propio en formato SVG dentro de los archivos estaticos.
-- Panel operativo con contadores conectados a los registros locales.
-- Formulario para solicitudes de soporte.
-- Formulario para registro de equipos o activos.
-- Formulario para tareas de mantenimiento.
-- Listado dinamico de registros agregados.
-- Eliminacion individual de registros.
-- Limpieza completa de datos locales.
-- Secciones informativas de servicios, flujo de trabajo y contacto.
-- Configuracion regional para Chile: idioma `es-cl` y zona horaria `America/Santiago`.
+- Landing profesional dark mode.
+- Logo SVG propio acorde a la identidad visual.
+- Hero con dashboard realista del sistema.
+- Cards de servicios: incidencias, equipos, inventario y mantenimiento.
+- Vista de producto con login visual, roles, CRUD, dashboard y ordenes.
+- Panel operativo con tickets, prioridades, responsables y stock.
+- Formularios demo para solicitudes, equipos y tareas.
+- Persistencia temporal local con `localStorage`.
+- Eliminacion individual de registros y limpieza completa.
+- Flujo operacional: Solicitud -> Diagnostico -> Asignacion -> Reparacion -> Cierre.
+
+## Modulos Representados
+
+| Modulo | Estado actual | Objetivo |
+| --- | --- | --- |
+| Landing | Implementado | Presentar el sistema como producto SaaS profesional. |
+| Login | Visual estatico | Representar futuro acceso por usuario y clave. |
+| Roles | Visual estatico | Mostrar perfiles: administrador, supervisor y tecnico. |
+| CRUD inventario | Visual + demo local | Comunicar gestion de activos, estados y acciones. |
+| Solicitudes | Demo funcional local | Registrar tickets temporales en el navegador. |
+| Equipos | Demo funcional local | Registrar activos con codigo, responsable y condicion. |
+| Mantenciones | Demo funcional local | Registrar tareas, encargados y fechas. |
+| Dashboard | Visual + contadores | Resumir tickets, activos, tareas, SLA y stock. |
+| Flujo | Visual estatico | Explicar el proceso completo de atencion. |
 
 ## Logica de la Aplicacion
 
-El proyecto combina Django para servir la pagina y JavaScript para manejar la interaccion del panel operativo.
-
 1. El usuario entra a `/`.
-2. Django ejecuta la vista `home` en `mantenimiento/views.py`.
-3. La vista entrega a la plantilla datos estaticos como servicios y pasos del flujo de trabajo.
-4. La plantilla `home.html` renderiza el sitio, los formularios y las secciones principales.
-5. El archivo `dashboard.js` captura los formularios, guarda los datos en `localStorage` y actualiza contadores/listas en pantalla.
-6. El CSS en `site.css` define la identidad visual, responsive design, tarjetas, formularios y paneles.
+2. Django ejecuta la vista `home`.
+3. La vista renderiza `templates/mantenimiento/home.html`.
+4. La plantilla carga `static/css/site.css`.
+5. La plantilla carga `static/js/dashboard.js`.
+6. JavaScript escucha los formularios de la demo.
+7. Los datos se guardan temporalmente en `localStorage`.
+8. La interfaz actualiza listas, contadores y estado local.
 
-Actualmente los datos no se guardan en SQLite. Se guardan temporalmente en el navegador. Para persistencia real, el siguiente paso seria crear modelos Django para solicitudes, equipos y tareas.
+Clave usada en navegador:
+
+```text
+gestionMantenimientoLocal
+```
 
 ## Tecnologias
 
 - Python
 - Django
-- HTML
-- CSS
+- HTML5
+- CSS3 responsive
 - JavaScript
 - SQLite
 - SVG
+- LocalStorage
 
 ## Instalacion
+
+No abras `templates/mantenimiento/home.html` directamente. Es una plantilla Django y debe ejecutarse desde el servidor.
 
 1. Crear entorno virtual:
 
@@ -67,38 +140,36 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-4. Entrar al proyecto Django:
+4. Ejecutar servidor:
 
 ```powershell
 cd pagina_curso
-```
-
-5. Validar configuracion:
-
-```powershell
-python manage.py check
-```
-
-6. Ejecutar servidor:
-
-```powershell
 python manage.py runserver
 ```
 
-7. Abrir en el navegador:
+5. Abrir:
 
 ```text
 http://127.0.0.1:8000/
 ```
 
-## Estructura Principal
+Tambien puedes usar:
+
+```powershell
+.\abrir_pagina.bat
+```
+
+## Estructura
 
 ```text
 .
 |-- README.md
+|-- abrir_pagina.bat
 |-- requirements.txt
 |-- docs/
 |   `-- screenshots/
+|       |-- home-desktop.png
+|       `-- home-mobile.png
 `-- pagina_curso/
     |-- manage.py
     |-- db.sqlite3
@@ -119,10 +190,11 @@ http://127.0.0.1:8000/
 
 | Archivo | Funcion |
 | --- | --- |
-| `pagina_curso/templates/mantenimiento/home.html` | Plantilla principal. Define el header, hero, paneles, formularios, servicios, flujo y contacto. |
-| `pagina_curso/static/css/site.css` | Estilos visuales del proyecto: layout responsive, tarjetas, botones, formularios y paneles. |
-| `pagina_curso/static/js/dashboard.js` | Logica del panel temporal. Guarda, lee, elimina y renderiza datos desde `localStorage`. |
-| `pagina_curso/static/img/logo-gm.svg` | Logo vectorial del sistema. Se usa en la barra superior. |
+| `pagina_curso/templates/mantenimiento/home.html` | Plantilla principal. Define la landing, hero, dashboard visual, servicios, panel operativo, formularios y flujo. |
+| `pagina_curso/static/css/site.css` | Estilos del sistema: dark mode, responsive, layout, cards, dashboard, formularios, tablas, menu y estados visuales. |
+| `pagina_curso/static/js/dashboard.js` | Logica demo: guarda datos en `localStorage`, renderiza registros, actualiza contadores y elimina datos. |
+| `pagina_curso/static/img/logo-gm.svg` | Logo vectorial del proyecto, alineado con la paleta dark tech. |
+| `abrir_pagina.bat` | Acceso rapido para levantar el servidor local en Windows. |
 
 ## Archivos Python
 
@@ -130,64 +202,56 @@ http://127.0.0.1:8000/
 
 | Archivo | Funcion |
 | --- | --- |
-| `pagina_curso/manage.py` | Utilidad de comandos de Django. Sirve para ejecutar el servidor, validar el proyecto, crear migraciones, correr tests y administrar tareas internas. |
+| `pagina_curso/manage.py` | Comando principal de Django. Sirve para ejecutar servidor, migraciones, tests y tareas administrativas. |
 
 ### Configuracion del Proyecto
 
 | Archivo | Funcion |
 | --- | --- |
-| `pagina_curso/pagina_curso/settings.py` | Configuracion central: apps instaladas, base de datos SQLite, archivos estaticos, idioma, zona horaria, middlewares y plantillas. |
-| `pagina_curso/pagina_curso/urls.py` | Define las rutas principales. Conecta `/` con la vista `home` y `/admin/` con el panel administrativo de Django. |
-| `pagina_curso/pagina_curso/asgi.py` | Punto de entrada ASGI. Se usa para despliegues asincronos o servidores compatibles con ASGI. |
-| `pagina_curso/pagina_curso/wsgi.py` | Punto de entrada WSGI. Se usa para despliegues tradicionales de Django en servidores web. |
+| `pagina_curso/pagina_curso/settings.py` | Configura apps instaladas, base de datos, estaticos, plantillas, idioma y zona horaria. |
+| `pagina_curso/pagina_curso/urls.py` | Define las rutas principales del proyecto, incluyendo `/` y `/admin/`. |
+| `pagina_curso/pagina_curso/asgi.py` | Punto de entrada ASGI para servidores asincronos. |
+| `pagina_curso/pagina_curso/wsgi.py` | Punto de entrada WSGI para despliegues tradicionales. |
 | `pagina_curso/pagina_curso/__init__.py` | Marca la carpeta como paquete Python. |
 
 ### App `mantenimiento`
 
 | Archivo | Funcion |
 | --- | --- |
-| `pagina_curso/mantenimiento/views.py` | Contiene la vista `home`. Prepara datos de servicios y flujo de trabajo, y renderiza `home.html`. |
-| `pagina_curso/mantenimiento/apps.py` | Configuracion de la app `mantenimiento` para que Django la reconozca. |
-| `pagina_curso/mantenimiento/models.py` | Espacio reservado para futuros modelos de mantenimiento, solicitudes, equipos o tareas. Actualmente no define tablas. |
-| `pagina_curso/mantenimiento/admin.py` | Archivo para registrar modelos en el panel admin de Django cuando existan modelos reales. |
-| `pagina_curso/mantenimiento/tests.py` | Archivo preparado para pruebas automatizadas de la app. |
-| `pagina_curso/mantenimiento/migrations/__init__.py` | Inicializa el paquete de migraciones de base de datos. |
+| `pagina_curso/mantenimiento/views.py` | Contiene la vista `home`, encargada de renderizar la interfaz principal. |
+| `pagina_curso/mantenimiento/apps.py` | Configura la app `mantenimiento` dentro de Django. |
+| `pagina_curso/mantenimiento/models.py` | Reservado para futuros modelos como Equipo, Solicitud, OrdenTrabajo, Inventario y Mantencion. |
+| `pagina_curso/mantenimiento/admin.py` | Preparado para registrar modelos en Django Admin cuando exista CRUD real. |
+| `pagina_curso/mantenimiento/tests.py` | Base para pruebas automatizadas de vistas, modelos y flujos. |
+| `pagina_curso/mantenimiento/migrations/__init__.py` | Inicializa el paquete de migraciones de la app. |
 | `pagina_curso/mantenimiento/__init__.py` | Marca la app como paquete Python. |
 
-### Apps `contactos`, `quienes_son` y `cursos365`
+### Apps Secundarias
 
-Estas apps estan creadas como modulos independientes, pero por ahora funcionan como estructura base. Sus archivos cumplen la misma funcion en cada app:
+Las apps `contactos`, `quienes_son` y `cursos365` estan creadas como estructura base para crecimiento futuro.
 
 | Archivo | Funcion |
 | --- | --- |
-| `admin.py` | Permitira registrar modelos en el administrador de Django. |
-| `apps.py` | Configura el nombre y metadatos de la app. |
-| `models.py` | Espacio para definir tablas de base de datos en el futuro. |
-| `views.py` | Espacio para crear vistas y pantallas propias de la app. |
-| `tests.py` | Archivo para pruebas automatizadas. |
-| `migrations/__init__.py` | Inicializa las migraciones de la app. |
-| `__init__.py` | Marca la carpeta como paquete Python. |
+| `admin.py` | Registro futuro de modelos en el panel administrativo. |
+| `apps.py` | Configuracion de cada app. |
+| `models.py` | Definicion futura de tablas. |
+| `views.py` | Vistas futuras para paginas o endpoints. |
+| `tests.py` | Pruebas automatizadas. |
+| `migrations/__init__.py` | Paquete de migraciones. |
+| `__init__.py` | Paquete Python. |
 
-## Almacenamiento Temporal
+## Roadmap
 
-Los paneles actuales guardan informacion con esta clave de navegador:
+Para convertir este prototipo en un sistema real:
 
-```text
-gestionMantenimientoLocal
-```
+1. Crear modelos Django para usuarios, roles, equipos, solicitudes, ordenes e inventario.
+2. Implementar login y permisos por rol.
+3. Reemplazar `localStorage` por persistencia en base de datos.
+4. Crear CRUD real para solicitudes, equipos, stock y ordenes.
+5. Conectar dashboard a datos reales.
+6. Agregar busqueda, filtros, paginacion y exportacion.
+7. Preparar despliegue publico para portafolio.
 
-Esto significa:
+## Estado Actual
 
-- Los datos quedan en el mismo navegador y computador.
-- Los datos no se comparten con otros usuarios.
-- Los datos no llegan a SQLite ni al servidor Django.
-- Al presionar "Limpiar datos", se elimina esa informacion local.
-
-## Proximos Pasos Recomendados
-
-- Crear modelos Django para `Solicitud`, `Equipo` y `Tarea`.
-- Reemplazar `localStorage` por guardado real en SQLite.
-- Agregar formularios Django o endpoints JSON para registrar datos desde el servidor.
-- Conectar los registros al panel admin.
-- Agregar autenticacion para usuarios tecnicos y administradores.
-- Crear pruebas para vistas, modelos y flujos principales.
+Proyecto presentable como prototipo visual y funcional local. La interfaz ya es responsive, tiene identidad visual propia, dashboard creible y documentacion preparada para mostrar la logica del sistema.

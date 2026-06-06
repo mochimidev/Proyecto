@@ -1,3 +1,6 @@
+if (!window.__gmDashboardLoaded) {
+window.__gmDashboardLoaded = true;
+
 const storageKey = "gestionMantenimientoLocal";
 
 const defaults = {
@@ -122,3 +125,4 @@ document.addEventListener("click", (event) => {
 });
 
 render();
+}

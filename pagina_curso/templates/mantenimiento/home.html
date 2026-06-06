@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sistema generico para registrar equipos, solicitudes y tareas de mantenimiento.">
-    <title>Gestion de Mantenimiento</title>
+    <meta name="description" content="Sistema inteligente de mantenimiento e inventario para organizaciones.">
+    <title>Gestion de Mantenimiento e Inventario</title>
     <link rel="icon" href="{% static 'img/logo-gm.svg' %}" type="image/svg+xml">
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
 </head>
@@ -13,220 +13,434 @@
     <header class="topbar" aria-label="Navegacion principal">
         <a class="brand" href="{% url 'home' %}" aria-label="Inicio">
             <img class="brand-logo" src="{% static 'img/logo-gm.svg' %}" alt="" width="42" height="42">
-            <span class="brand-name">Gestion de Mantenimiento</span>
+            <span class="brand-name">Gestion Mantix</span>
         </a>
         <nav class="nav-links" aria-label="Secciones">
-            <a href="#paneles">Paneles</a>
+            <a href="#inicio">Inicio</a>
             <a href="#servicios">Servicios</a>
+            <a href="#inventario">Inventario</a>
             <a href="#flujo">Flujo</a>
             <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" id="inicio">
             <div class="hero-copy">
-                <p class="eyebrow">Mesa de ayuda y activos</p>
-                <h1>Registro claro para soporte tecnico y mantenimiento.</h1>
+                <p class="eyebrow">Mantenimiento, soporte e inventario</p>
+                <h1>Sistema inteligente de mantenimiento e inventario</h1>
                 <p class="hero-text">
-                    Organiza solicitudes, equipos y responsables en una vista simple para equipos de trabajo,
-                    areas internas o pequenas organizaciones.
+                    Registra solicitudes, controla equipos, gestiona responsables y centraliza el inventario
+                    de tu organizacion en una plataforma clara, rapida y profesional.
                 </p>
                 <div class="hero-actions">
-                    <a class="button primary" href="#paneles">Abrir paneles</a>
-                    <a class="button secondary" href="#contacto">Solicitar soporte</a>
+                    <a class="button primary" href="#inventario">Solicitar soporte</a>
+                    <a class="button secondary" href="#servicios">Ver servicios</a>
+                </div>
+                <div class="trust-strip" aria-label="Capacidades principales">
+                    <span>Soporte tecnico</span>
+                    <span>Inventario activo</span>
+                    <span>Historial por equipo</span>
                 </div>
             </div>
 
-            <aside class="status-panel" aria-label="Resumen del sistema">
-                <div class="panel-header">
-                    <span class="status-dot"></span>
-                    <span>Panel operativo</span>
-                </div>
-                <div class="ticket-card">
-                    <span class="ticket-tag">Prioridad media</span>
-                    <strong>Equipo en revision</strong>
-                    <p>Diagnostico tecnico, repuestos y cierre documentado.</p>
-                </div>
-                <div class="mini-grid">
-                    <div>
-                        <strong data-count="tickets">0</strong>
-                        <span>solicitudes locales</span>
+            <div class="hero-visual" aria-label="Dashboard operacional de mantenimiento e inventario">
+                <div class="hero-dashboard">
+                    <div class="dashboard-topline">
+                        <div>
+                            <span class="module-tag">Panel en vivo</span>
+                            <h3>Operaciones TI</h3>
+                        </div>
+                        <strong>98%</strong>
                     </div>
-                    <div>
-                        <strong data-count="assets">0</strong>
-                        <span>equipos registrados</span>
+
+                    <div class="hero-kpis">
+                        <div><strong>18</strong><span>tickets abiertos</span></div>
+                        <div><strong>124</strong><span>activos</span></div>
+                        <div><strong>7</strong><span>OT pendientes</span></div>
                     </div>
-                    <div>
-                        <strong data-count="tasks">0</strong>
-                        <span>tareas pendientes</span>
+
+                    <div class="hero-panel-grid">
+                        <section class="hero-table-card">
+                            <div class="mini-card-header">
+                                <strong>Tickets recientes</strong>
+                                <span>Prioridad</span>
+                            </div>
+                            <div class="mini-table">
+                                <div><span>TK-1042</span><strong>Servidor sin respaldo</strong><em class="status-chip error">Alta</em></div>
+                                <div><span>TK-1043</span><strong>Notebook lento</strong><em class="status-chip warning">Media</em></div>
+                                <div><span>TK-1044</span><strong>Monitor reemplazo</strong><em class="status-chip success">Baja</em></div>
+                            </div>
+                        </section>
+
+                        <section class="hero-chart-card">
+                            <div class="mini-card-header">
+                                <strong>SLA semanal</strong>
+                                <span>92%</span>
+                            </div>
+                            <svg class="mini-line-chart" viewBox="0 0 220 90" aria-hidden="true">
+                                <path d="M8 70H212" />
+                                <path d="M8 48H212" />
+                                <path d="M8 26H212" />
+                                <polyline points="10,66 46,54 82,60 118,38 154,42 190,24 212,30" />
+                            </svg>
+                        </section>
+
+                        <section class="hero-inventory-card">
+                            <div class="mini-card-header">
+                                <strong>Inventario critico</strong>
+                                <span>Stock</span>
+                            </div>
+                            <div class="inventory-meter"><span style="--w: 74%"></span><strong>Discos SSD</strong></div>
+                            <div class="inventory-meter"><span style="--w: 48%"></span><strong>Fuentes ATX</strong></div>
+                            <div class="inventory-meter"><span style="--w: 62%"></span><strong>Memorias RAM</strong></div>
+                        </section>
                     </div>
                 </div>
-            </aside>
+            </div>
         </section>
 
-        <section class="app-dashboard" id="paneles" aria-labelledby="panel-title">
-            <div class="dashboard-heading">
+        <section class="metrics-grid" aria-label="Metricas del sistema">
+            <article>
+                <strong>24 h</strong>
+                <span>respuesta objetivo</span>
+            </article>
+            <article>
+                <strong>100%</strong>
+                <span>registro centralizado</span>
+            </article>
+            <article>
+                <strong>Live</strong>
+                <span>inventario actualizado</span>
+            </article>
+            <article>
+                <strong>ID</strong>
+                <span>historial por equipo</span>
+            </article>
+        </section>
+
+        <section class="product-suite" aria-labelledby="suite-title">
+            <div class="section-heading split-heading">
                 <div>
-                    <p class="eyebrow">Paneles conectados</p>
-                    <h2 id="panel-title">Gestion temporal de soporte.</h2>
-                    <p>Los datos quedan guardados en este navegador para pruebas rapidas. Puedes limpiar todo cuando quieras.</p>
+                    <p class="eyebrow">Vista de producto</p>
+                    <h2 id="suite-title">Modulo laboral listo para evolucionar a sistema real.</h2>
                 </div>
-                <div class="storage-card">
-                    <span class="storage-label">Estado local</span>
-                    <strong id="storageStatus">Sin registros</strong>
-                    <button class="button danger" type="button" id="clearData">Limpiar datos</button>
-                </div>
+                <p>
+                    La interfaz muestra los componentes clave que se esperan en una plataforma interna:
+                    acceso por rol, CRUD, ordenes de mantencion, dashboard, trazabilidad e inventario.
+                </p>
             </div>
 
-            <div class="dashboard-grid">
-                <article class="data-panel">
-                    <div class="data-panel-header">
-                        <span class="panel-icon">S</span>
-                        <div>
-                            <h3>Solicitudes</h3>
-                            <p>Registra incidentes o requerimientos.</p>
-                        </div>
+            <div class="suite-grid">
+                <article class="login-preview">
+                    <div class="mock-window-bar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                    <form class="stacked-form" data-form="tickets">
-                        <label>
-                            Solicitante
-                            <input name="requester" type="text" placeholder="Nombre o area" required>
-                        </label>
-                        <label>
-                            Detalle
-                            <textarea name="detail" rows="3" placeholder="Describe el problema" required></textarea>
-                        </label>
-                        <div class="form-row">
-                            <label>
-                                Prioridad
-                                <select name="priority">
-                                    <option>Media</option>
-                                    <option>Alta</option>
-                                    <option>Baja</option>
-                                </select>
-                            </label>
-                            <label>
-                                Estado
-                                <select name="status">
-                                    <option>Abierta</option>
-                                    <option>En revision</option>
-                                    <option>Cerrada</option>
-                                </select>
-                            </label>
-                        </div>
-                        <button class="button primary" type="submit">Guardar solicitud</button>
-                    </form>
-                    <div class="record-list" data-list="tickets"></div>
+                    <div class="login-box">
+                        <img src="{% static 'img/logo-gm.svg' %}" alt="" width="46" height="46">
+                        <h3>Acceso operativo</h3>
+                        <p>Ingreso preparado para tecnicos, supervisores y administradores.</p>
+                        <label>Correo institucional<input type="text" value="tecnico@empresa.cl" readonly></label>
+                        <label>Clave<input type="password" value="mantix-demo" readonly></label>
+                        <button class="button primary" type="button">Entrar al sistema</button>
+                    </div>
                 </article>
 
-                <article class="data-panel">
-                    <div class="data-panel-header">
-                        <span class="panel-icon blue">E</span>
-                        <div>
-                            <h3>Equipos</h3>
-                            <p>Controla activos y responsables.</p>
-                        </div>
-                    </div>
-                    <form class="stacked-form" data-form="assets">
-                        <label>
-                            Equipo
-                            <input name="name" type="text" placeholder="Notebook, impresora, router" required>
-                        </label>
-                        <div class="form-row">
-                            <label>
-                                Codigo
-                                <input name="code" type="text" placeholder="ACT-001" required>
-                            </label>
-                            <label>
-                                Responsable
-                                <input name="owner" type="text" placeholder="Area o persona" required>
-                            </label>
-                        </div>
-                        <label>
-                            Condicion
-                            <select name="condition">
-                                <option>Operativo</option>
-                                <option>En revision</option>
-                                <option>Fuera de servicio</option>
-                            </select>
-                        </label>
-                        <button class="button primary" type="submit">Guardar equipo</button>
-                    </form>
-                    <div class="record-list" data-list="assets"></div>
+                <article class="module-card">
+                    <span class="module-tag">Roles</span>
+                    <h3>Permisos por perfil</h3>
+                    <ul class="role-list">
+                        <li><strong>Administrador</strong><span>Gestiona usuarios, equipos y reportes.</span></li>
+                        <li><strong>Supervisor</strong><span>Asigna responsables y revisa cumplimiento.</span></li>
+                        <li><strong>Tecnico</strong><span>Actualiza diagnosticos, reparaciones y cierres.</span></li>
+                    </ul>
                 </article>
 
-                <article class="data-panel">
-                    <div class="data-panel-header">
-                        <span class="panel-icon coral">T</span>
-                        <div>
-                            <h3>Tareas</h3>
-                            <p>Agenda acciones y cierres pendientes.</p>
+                <article class="module-card wide">
+                    <span class="module-tag">CRUD</span>
+                    <h3>Gestion de datos principales</h3>
+                    <div class="crud-table" role="table" aria-label="Tabla de ejemplo de inventario">
+                        <div role="row">
+                            <span>Codigo</span>
+                            <span>Equipo</span>
+                            <span>Estado</span>
+                            <span>Accion</span>
+                        </div>
+                        <div role="row">
+                            <span>ACT-024</span>
+                            <span>Notebook Dell</span>
+                            <span class="pill success">Operativo</span>
+                            <span>Editar</span>
+                        </div>
+                        <div role="row">
+                            <span>IMP-009</span>
+                            <span>Impresora HP</span>
+                            <span class="pill warning">Revision</span>
+                            <span>Actualizar</span>
+                        </div>
+                        <div role="row">
+                            <span>SRV-002</span>
+                            <span>Servidor local</span>
+                            <span class="pill danger-pill">Critico</span>
+                            <span>Ordenar</span>
                         </div>
                     </div>
-                    <form class="stacked-form" data-form="tasks">
-                        <label>
-                            Tarea
-                            <input name="title" type="text" placeholder="Revision, instalacion, retiro" required>
-                        </label>
-                        <div class="form-row">
-                            <label>
-                                Encargado
-                                <input name="assignee" type="text" placeholder="Tecnico responsable" required>
-                            </label>
-                            <label>
-                                Fecha
-                                <input name="due" type="date" required>
-                            </label>
-                        </div>
-                        <label>
-                            Avance
-                            <select name="progress">
-                                <option>Pendiente</option>
-                                <option>En proceso</option>
-                                <option>Completada</option>
-                            </select>
-                        </label>
-                        <button class="button primary" type="submit">Guardar tarea</button>
-                    </form>
-                    <div class="record-list" data-list="tasks"></div>
+                </article>
+
+                <article class="module-card">
+                    <span class="module-tag">Dashboard</span>
+                    <h3>Indicadores para jefatura</h3>
+                    <div class="mini-analytics" aria-hidden="true">
+                        <svg class="donut-chart" viewBox="0 0 42 42">
+                            <circle cx="21" cy="21" r="15.5"></circle>
+                            <circle cx="21" cy="21" r="15.5"></circle>
+                            <text x="21" y="24">92</text>
+                        </svg>
+                        <svg class="sparkline-chart" viewBox="0 0 160 72">
+                            <path d="M4 58H156" />
+                            <path d="M4 38H156" />
+                            <polyline points="5,54 30,44 55,50 80,28 105,34 130,20 155,26" />
+                        </svg>
+                    </div>
+                    <p>Lectura rapida de solicitudes, stock, pendientes y cumplimiento de SLA.</p>
+                </article>
+
+                <article class="module-card">
+                    <span class="module-tag">Ordenes</span>
+                    <h3>Mantencion documentada</h3>
+                    <div class="order-stack">
+                        <div><strong>OT-1024</strong><span>Cambio de disco SSD</span></div>
+                        <div><strong>OT-1025</strong><span>Limpieza preventiva</span></div>
+                        <div><strong>OT-1026</strong><span>Revision de red</span></div>
+                    </div>
                 </article>
             </div>
         </section>
 
         <section class="section" id="servicios">
-            <div class="section-heading">
-                <p class="eyebrow">Servicios</p>
-                <h2>Todo lo esencial para ordenar el soporte.</h2>
+            <div class="section-heading split-heading">
+                <div>
+                    <p class="eyebrow">Servicios del sistema</p>
+                    <h2>Control completo para soporte e inventario.</h2>
+                </div>
+                <p>
+                    Un entorno centralizado para ordenar incidencias, equipos, stock, responsables y tareas
+                    sin perder trazabilidad operativa.
+                </p>
             </div>
+
             <div class="service-grid">
-                {% for service in services %}
                 <article class="service-card">
-                    <span class="service-number">0{{ forloop.counter }}</span>
-                    <h3>{{ service.title }}</h3>
-                    <p>{{ service.description }}</p>
+                    <span class="line-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 5h16v10H4z"/><path d="M8 19h8"/><path d="M12 15v4"/></svg>
+                    </span>
+                    <h3>Registro de incidencias</h3>
+                    <p>Centraliza solicitudes, prioridades, estados y responsables desde un unico punto operativo.</p>
                 </article>
-                {% endfor %}
+                <article class="service-card">
+                    <span class="line-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 7l8-4 8 4-8 4z"/><path d="M4 7v10l8 4 8-4V7"/><path d="M12 11v10"/></svg>
+                    </span>
+                    <h3>Gestion de equipos</h3>
+                    <p>Controla computadores, impresoras, redes, servidores y activos asignados por area.</p>
+                </article>
+                <article class="service-card">
+                    <span class="line-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M5 12h14"/><path d="M5 18h14"/><path d="M8 4v4"/><path d="M16 10v4"/><path d="M11 16v4"/></svg>
+                    </span>
+                    <h3>Control de inventario</h3>
+                    <p>Visualiza stock, codigos, condiciones, movimientos y disponibilidad de activos criticos.</p>
+                </article>
+                <article class="service-card">
+                    <span class="line-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M4.6 7.5l2.6 1.5"/><path d="M16.8 15l2.6 1.5"/><path d="M19.4 7.5 16.8 9"/><path d="M7.2 15l-2.6 1.5"/><circle cx="12" cy="12" r="4"/></svg>
+                    </span>
+                    <h3>Seguimiento de mantenimiento</h3>
+                    <p>Documenta diagnosticos, reparaciones, repuestos, cierres e historial tecnico por equipo.</p>
+                </article>
             </div>
         </section>
 
-        <section class="workflow-band" id="flujo">
-            <div>
-                <p class="eyebrow">Flujo de trabajo</p>
-                <h2>De la solicitud al cierre, sin perder informacion.</h2>
+        <section class="inventory-section" id="inventario">
+            <div class="panel-copy">
+                <p class="eyebrow">Panel operativo</p>
+                <h2>Tickets, responsables, prioridades y stock en una sola vista.</h2>
+                <p>
+                    Esta demo guarda informacion temporal en tu navegador. Sirve para probar el flujo antes de
+                    conectar modelos reales de Django y una base de datos persistente.
+                </p>
+            </div>
+
+            <div class="ops-layout">
+                <aside class="ops-board" aria-label="Resumen operacional">
+                    <div class="board-header">
+                        <span class="live-dot"></span>
+                        <div>
+                            <strong>Centro de control</strong>
+                            <small>Inventario y soporte</small>
+                        </div>
+                    </div>
+                    <div class="ticket-row high">
+                        <span>Alta</span>
+                        <strong>Servidor requiere diagnostico</strong>
+                        <small>Responsable: Soporte TI</small>
+                    </div>
+                    <div class="ticket-row medium">
+                        <span>Media</span>
+                        <strong>Notebook en revision</strong>
+                        <small>Stock: 8 repuestos disponibles</small>
+                    </div>
+                    <div class="stock-grid">
+                        <div><strong data-count="tickets">0</strong><span>solicitudes</span></div>
+                        <div><strong data-count="assets">0</strong><span>equipos</span></div>
+                        <div><strong data-count="tasks">0</strong><span>tareas</span></div>
+                    </div>
+                    <div class="storage-card">
+                        <span class="storage-label">Estado local</span>
+                        <strong id="storageStatus">Sin registros</strong>
+                        <button class="button danger" type="button" id="clearData">Limpiar datos</button>
+                    </div>
+                </aside>
+
+                <div class="dashboard-grid">
+                    <article class="data-panel">
+                        <div class="data-panel-header">
+                            <span class="panel-icon">S</span>
+                            <div>
+                                <h3>Solicitudes</h3>
+                                <p>Registra incidentes o requerimientos.</p>
+                            </div>
+                        </div>
+                        <form class="stacked-form" data-form="tickets">
+                            <label>
+                                Solicitante
+                                <input name="requester" type="text" placeholder="Nombre o area" required>
+                            </label>
+                            <label>
+                                Detalle
+                                <textarea name="detail" rows="3" placeholder="Describe el problema" required></textarea>
+                            </label>
+                            <div class="form-row">
+                                <label>
+                                    Prioridad
+                                    <select name="priority">
+                                        <option>Media</option>
+                                        <option>Alta</option>
+                                        <option>Baja</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    Estado
+                                    <select name="status">
+                                        <option>Abierta</option>
+                                        <option>En revision</option>
+                                        <option>Cerrada</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button class="button primary" type="submit">Guardar solicitud</button>
+                        </form>
+                        <div class="record-list" data-list="tickets"></div>
+                    </article>
+
+                    <article class="data-panel">
+                        <div class="data-panel-header">
+                            <span class="panel-icon blue">E</span>
+                            <div>
+                                <h3>Inventario</h3>
+                                <p>Controla activos y responsables.</p>
+                            </div>
+                        </div>
+                        <form class="stacked-form" data-form="assets">
+                            <label>
+                                Equipo
+                                <input name="name" type="text" placeholder="Notebook, monitor, router" required>
+                            </label>
+                            <div class="form-row">
+                                <label>
+                                    Codigo
+                                    <input name="code" type="text" placeholder="ACT-001" required>
+                                </label>
+                                <label>
+                                    Responsable
+                                    <input name="owner" type="text" placeholder="Area o persona" required>
+                                </label>
+                            </div>
+                            <label>
+                                Condicion
+                                <select name="condition">
+                                    <option>Operativo</option>
+                                    <option>En revision</option>
+                                    <option>Fuera de servicio</option>
+                                </select>
+                            </label>
+                            <button class="button primary" type="submit">Guardar equipo</button>
+                        </form>
+                        <div class="record-list" data-list="assets"></div>
+                    </article>
+
+                    <article class="data-panel">
+                        <div class="data-panel-header">
+                            <span class="panel-icon coral">T</span>
+                            <div>
+                                <h3>Mantenimiento</h3>
+                                <p>Agenda acciones y cierres pendientes.</p>
+                            </div>
+                        </div>
+                        <form class="stacked-form" data-form="tasks">
+                            <label>
+                                Tarea
+                                <input name="title" type="text" placeholder="Revision, instalacion, retiro" required>
+                            </label>
+                            <div class="form-row">
+                                <label>
+                                    Encargado
+                                    <input name="assignee" type="text" placeholder="Tecnico responsable" required>
+                                </label>
+                                <label>
+                                    Fecha
+                                    <input name="due" type="date" required>
+                                </label>
+                            </div>
+                            <label>
+                                Avance
+                                <select name="progress">
+                                    <option>Pendiente</option>
+                                    <option>En proceso</option>
+                                    <option>Completada</option>
+                                </select>
+                            </label>
+                            <button class="button primary" type="submit">Guardar tarea</button>
+                        </form>
+                        <div class="record-list" data-list="tasks"></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="workflow-section" id="flujo">
+            <div class="section-heading split-heading">
+                <div>
+                    <p class="eyebrow">Como funciona</p>
+                    <h2>Un flujo tecnico claro desde la solicitud hasta el cierre.</h2>
+                </div>
             </div>
             <ol class="workflow-list">
-                {% for item in workflow %}
-                <li>{{ item }}</li>
-                {% endfor %}
+                <li><span>1</span>Solicitud</li>
+                <li><span>2</span>Diagnostico</li>
+                <li><span>3</span>Asignacion</li>
+                <li><span>4</span>Reparacion</li>
+                <li><span>5</span>Cierre</li>
             </ol>
         </section>
 
         <section class="contact-section" id="contacto">
             <div>
                 <p class="eyebrow">Contacto</p>
-                <h2>Centraliza nuevas solicitudes.</h2>
-                <p>Usa datos genericos para adaptar este proyecto a cualquier equipo de soporte.</p>
+                <h2>Centraliza el soporte tecnico de tu organizacion.</h2>
+                <p>Implementa una base profesional para registrar activos, atender solicitudes y mantener trazabilidad operacional.</p>
             </div>
             <div class="contact-card">
                 <span>soporte@ejemplo.cl</span>
@@ -235,6 +449,7 @@
             </div>
         </section>
     </main>
+
     <script src="{% static 'js/dashboard.js' %}" defer></script>
 </body>
 </html>
